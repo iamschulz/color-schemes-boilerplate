@@ -1,0 +1,49 @@
+body {
+	font-family: sans-serif;
+	max-width: 80ch;
+	margin: auto;
+	padding: 0 2ch;
+	font-size: 1.2em;
+	line-height: 1.5;
+}
+
+h1 {
+	margin-bottom: 0;
+}
+h1 + p {
+	margin-top: 0;
+	margin-bottom: 5rem;
+}
+
+section {
+	margin-top: 5rem;
+}
+
+.theme-controls {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(18ch, 1fr));
+	background-color: var(--accent-color);
+	color: var(--accent-contrast-color);
+	padding: 2rem;
+}
+
+img {
+	max-width: 100%;
+}
+
+code,
+pre {
+	background-color: var(--accent-color);
+	color: var(--accent-contrast-color);
+	white-space: pre;
+}
+
+pre {
+	padding: 2ex 2ch;
+	overflow: auto;
+}
+
+footer {
+	margin-top: 10rem;
+	font-size: 0.8rem;
+}

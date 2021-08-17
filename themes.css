@@ -1,0 +1,136 @@
+/* Set Custom properties */
+:root {
+	--theme-hue: 210deg;
+	--theme-sat: 20%;
+	--theme-lit: 90%;
+
+	--theme-accent-hue: 200deg;
+	--theme-accent-sat: 100%;
+	--theme-accent-lit: 25%;
+
+	--color-scheme: light dark;
+	color-scheme: var(--color-scheme);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--theme-lit: 20%;
+		--theme-accent-lit: 80%;
+	}
+}
+
+[data-theme="light"] {
+	--theme-lit: 90%;
+	--theme-accent-lit: 25%;
+	--color-scheme: light only;
+}
+
+[data-theme="dark"] {
+	--theme-lit: 20%;
+	--theme-accent-lit: 80%;
+	--color-scheme: dark only;
+}
+
+/* Add custom themes as you see fit */
+[data-theme="cherry"] {
+	--theme-hue: -10deg;
+	--theme-lit: 33%;
+	--theme-sat: 80%;
+
+	--theme-accent-hue: 40deg;
+	--theme-accent-sat: 100%;
+	--theme-accent-lit: 80%;
+
+	color-scheme: light only;
+}
+
+/* Apply Custom properties to DOM elements */
+body {
+	--background-color: hsl(
+		var(--theme-hue),
+		var(--theme-sat),
+		var(--theme-lit)
+	);
+
+	--font-color: hsl(
+		var(--theme-hue),
+		var(--theme-sat),
+		clamp(10%, calc(100% - (var(--theme-lit) - 47%) * 1000), 95%)
+	);
+
+	--accent-color: hsl(
+		var(--theme-accent-hue),
+		var(--theme-accent-sat),
+		var(--theme-accent-lit)
+	);
+
+	--accent-contrast-color: hsl(
+		var(--theme-accent-hue),
+		var(--theme-accent-sat),
+		clamp(0%, calc(100% - (var(--theme-accent-lit) - 47%) * 1000), 100%)
+	);
+
+	--accent-fade-color: hsl(
+		var(--theme-accent-hue),
+		calc(var(--theme-accent-sat) - 30%),
+		calc(var(--theme-accent-lit) - 10%)
+	);
+
+	background-color: var(--background-color);
+	color: var(--font-color);
+}
+
+a[href] {
+	color: var(--accent-color);
+}
+
+a[href]:visited {
+	color: var(--accent-fade-color);
+}
+
+input,
+textarea,
+select {
+	accent-color: var(--accent-color);
+}
+
+input::selection,
+textarea::selection {
+	background-color: var(--accent-color);
+	color: var(--accent-contrast-color);
+}
+
+/* Nuke everything from orbit for Contrast Mode */
+@media (prefers-contrast: more) {
+	* {
+		background: black !important;
+		color: white !important;
+	}
+
+	*::selection {
+		background: cyan !important;
+		color: black !important;
+	}
+
+	a,
+	a *,
+	a:hover,
+	a:hover *,
+	a:active,
+	a:active * {
+		color: yellow !important;
+		border-color: yellow !important;
+	}
+
+	a:visited,
+	a:visited * {
+		color: greenyellow !important;
+		border-color: yellow !important;
+	}
+
+	button {
+		background: black !important;
+		color: white !important;
+		border: 0.2ch solid cyan !important;
+	}
+}

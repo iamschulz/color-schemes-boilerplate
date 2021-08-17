@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#e0e6eb" />
+		<meta
+			name="description"
+			content="A template for modern, fast and user-friendly website themes"
+		/>
+		<title>Color Schemes Boilerplate</title>
+		<link rel="preload" href="themes.css" as="style" />
+		<link rel="stylesheet" href="themes.css" />
+		<link rel="preload" href="layout.css" as="style" />
+		<link rel="stylesheet" href="layout.css" />
+		<link rel="preload" href="script.js" as="script" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<script>
+			window.themes = {
+				light: "#e0e6eb",
+				dark: "#29333d",
+				cherry: "#971127",
+				// expand as you like
+			};
+
+			const setTheme = () => {
+				if (!window.localStorage || !localStorage.theme) {
+					return;
+				}
+				document.body.dataset.theme = localStorage.theme;
+				document.documentElement.style.setProperty(
+					"--color-scheme",
+					localStorage.theme
+				);
+
+				if (!Object.keys(themes).includes(localStorage.theme)) {
+					return;
+				}
+				document
+					.querySelector('meta[name="theme-color"]')
+					.setAttribute("content", window.themes[localStorage.theme]);
+			};
+			setTheme();
+		</script>
+		<header>
+			<h1>Color Schemes Boilerplate</h1>
+			<p>A template for modern, fast and user-friendly website themes</p>
+			<p>Select a theme:</p>
+			<form class="theme-controls">
+				<label>
+					<input
+						type="radio"
+						name="theme-switch"
+						value="auto"
+						checked
+					/>
+					Auto 🚗
+				</label>
+
+				<label>
+					<input type="radio" name="theme-switch" value="light" />
+					Light 🌞
+				</label>
+
+				<label>
+					<input type="radio" name="theme-switch" value="dark" />
+					Dark 🌙
+				</label>
+
+				<label>
+					<input type="radio" name="theme-switch" value="cherry" />
+					Cherry 🍒
+				</label>
+			</form>
+		</header>
+
+		<section>
+			<h2>
+				<a href="#managing-all-the-colors">#</a> Managing all the colors
+			</h2>
+			<!-- Color Management, Auto Contrast -->
+			<p>
+				Color Management is hard. You want your colors to look pretty.
+				You also want them to be easy to read. You don't want to micro
+				manage, because that's tedious work.<br />
+				Here's a <a href="/themes.css">boilerplate CSS file</a> that
+				will help you generate light, dark and colorful themes from only
+				a few variables.
+			</p>
+			<pre><code>--theme-hue: 210deg; 
+--theme-sat: 20%; 
+--theme-lit: 90%;
+
+--theme-accent-hue: 200deg; 
+--theme-accent-sat: 100%;
+--theme-accent-lit: 25%;</code></pre>
+			<sub
+				>(Custom properties are a must have, so this won't work on IE11.
+				Go update your browser!)</sub
+			>
+
+			<p>
+				Define a Hue, Saturation and Lightness and start out with a
+				robust and accessible foundation for all colors and themes on
+				your website.
+			</p>
+
+			<p>
+				I also included <a href="/script.js">a little Javascript</a>,
+				that will help you switch themes as efficiently as it gets.<br />
+				<sub
+					>(This will require <code>localStorage</code> to work.)</sub
+				>
+			</p>
+		</section>
+
+		<section>
+			<h2><a href="#input-elements">#</a> Input Elements</h2>
+			<p>
+				If your browser
+				<a href="https://caniuse.com/?search=color-scheme">supports</a>
+				<code>color-scheme</code>, interactive elements will
+				automatically adapt light or dark mode.
+			</p>
+			<fieldset>
+				<legend>Cat</legend>
+				<p>
+					<label>
+						Name:
+						<input type="text" value="Mr. Squigglesworth" />
+					</label>
+				</p>
+				<p>
+					<label>
+						Fluffyness:
+						<input type="range" value="50" />
+					</label>
+				</p>
+				<p>
+					<label>
+						Character:
+						<select>
+							<option>Playful</option>
+							<option>Lazy</option>
+							<option>Weird</option>
+						</select>
+					</label>
+				</p>
+				<p>
+					<label><input type="checkbox" checked />Purrs</label>
+					<br />
+					<label
+						><input type="checkbox" />Knocks vases off
+						shelves</label
+					>
+					<br />
+					<label
+						><input type="checkbox" />Chases laser pointers</label
+					>
+				</p>
+				<p>
+					<label
+						><input type="radio" name="likesyou" />Likes you</label
+					><br />
+					<label
+						><input type="radio" name="likesyou" />Couldn't care
+						less about you</label
+					>
+				</p>
+				<p><button>😺 Cat!</button></p>
+			</fieldset>
+		</section>
+
+		<section>
+			<h2><a href="#themed-browser-ui">#</a> Themed Browser UI</h2>
+			<p>
+				Look at me. Now look at the Browser Bar. Now look back at me. If
+				your browser
+				<a href="https://caniuse.com/meta-theme-color">supports</a>
+				<code>theme-color</code>, this will paint your browser
+				accordingly to the active theme.
+				</p>
+				<!-- todo: add screenshot -->
+				<p>
+				<code>window.themes</code> includes a list of all themes with their according colors, so be sure to add your custom one here.
+				<pre><code>window.themes = {
+	light: "#e0e6eb",
+	dark: "#29333d",
+	cherry: "#971127",
+};</code></pre>
+			</p>
+		</section>
+
+		<section>
+			<h2><a href="#power-to-the-people">#</a> Power to the people</h2>
+			Let your Users choose how to view your website. Give them manual
+			control over the theme selection, in addition to a meaningful
+			default.<br />
+			Go on! Switch your device theme, activate the auto option and reload
+			this page.
+		</section>
+
+		<section>
+			<h2><a href="#how-to-use-it">#</a> How to use it</h2>
+			Make sure you can use Custom Properties and have access to
+			<code>localStorage</code>. Then, copy the
+			<a href="/themes.css">CSS</a> and
+			<a href="/script.js">JavaScript</a> files and add them to your
+			project. As you add a theme by defining it with a new CSS class and add its background color to <code>window.themes</code>.<br />
+			Build your own layout on top of this Boilerplate. Add more colors.
+			Add more themes. Be creative!
+		</section>
+
+		<footer>
+			<p>
+				Made with 🍩 by <a href="https://iamschulz.com">Daniel Schulz</a
+				><br />
+				<a
+					href="https://iamschulz.com/lights-out-overengineering-a-dark-mode/"
+					>Read the blog post</a
+				><br />
+				<a href="https://github.com/iamschulz/dark-mode-boilerplate"
+					>Contribute</a
+				><br />
+				<a href="https://twitter.com/iamschulz">@ me</a>
+			</p>
+		</footer>
+	</body>
+</html>
